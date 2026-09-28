@@ -1,0 +1,40 @@
+---
+layout: default
+file: "tip-calculator.html"
+title: "Tip Calculator — Free, Instant | 1Each"
+description: "Calculate the tip and total, split it between people, and round smartly. Includes a quick tipping guide by service."
+canon: "tip-calculator.html"
+js: ["tools.js"]
+---
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is 18% a good tip?", "acceptedAnswer": {"@type": "Answer", "text": "18% is a common standard for sit-down service in North American cities; 20% for excellent service."}}, {"@type": "Question", "name": "Do I tip on takeout?", "acceptedAnswer": {"@type": "Answer", "text": "It's optional; many people leave 10% or round up for larger or complex orders."}}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Tip Calculator", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "url": "https://1each.com/tip-calculator.html"}</script><section class="page-hero"><div class="container">
+  <div class="crumbs"><a href="index.html">Home</a> / <a href="tools.html">Tools</a> / Tip Calculator</div>
+  <span class="eyebrow">Free tool · No sign-up · Works offline</span><h1>Tip Calculator</h1><p class="muted" style="font-size:1.15rem;max-width:720px">The right tip, rounded smart, split any number of ways.</p>
+</div></section>
+<section style="padding-top:32px"><div class="container">
+  <div style="display:flex;justify-content:flex-end;gap:8px;align-items:center;margin-bottom:12px"><span class="small muted">Currency</span><select class="cur-select" aria-label="Currency" style="width:auto;padding:6px 10px">
+<option>USD</option><option>CAD</option><option>EUR</option><option>GBP</option><option>INR</option><option>AUD</option><option>AED</option><option>LKR</option></select><button class="btn btn-ghost btn-sm" data-share>Share</button></div>
+  <div class="tool" id="tool-tip">
+    <div class="card"><div class="row2"><div class="field"><label for="tp-bill">Bill amount</label><input id="tp-bill" type="number" min="0" step="0.01" value="86.50"></div>
+<div class="field"><label for="tp-ppl">People</label><input id="tp-ppl" type="number" min="1" value="2"></div></div>
+<div class="field"><label for="tp-pct">Tip %</label><input id="tp-pct" type="number" min="0" step="0.5" value="18"></div>
+<div class="chips" id="tp-tips" style="margin:-6px 0 14px"><button class="chip" data-v="10">10%</button><button class="chip" data-v="15">15%</button><button class="chip active" data-v="18">18%</button><button class="chip" data-v="20">20%</button><button class="chip" data-v="25">25%</button></div>
+<div class="field"><label for="tp-round">Rounding</label><select id="tp-round"><option value="none">No rounding</option><option value="total">Round total up</option><option value="each">Round each share up</option></select></div></div>
+    <div><div class="result" aria-live="polite"><div class="small" style="opacity:.85">Each person pays</div><div class="big" id="tp-each">—</div>
+<table><tbody id="tp-out"></tbody></table></div></div>
+  </div>
+</div></section>
+<div class="ad-slot" data-pos="inArticle" aria-label="Advertisement"></div>
+<section><div class="container prose"><h2>Quick tipping guide (US/Canada norms)</h2><div class="table-wrap"><table class="cmp"><tr><th>Service</th><th>Typical tip</th></tr>
+<tr><td>Sit-down restaurant</td><td>15–20%</td></tr><tr><td>Bar</td><td>$1–2 per drink or 15–20%</td></tr><tr><td>Food delivery</td><td>15–20%, minimum a few dollars</td></tr>
+<tr><td>Taxi / rideshare</td><td>10–20%</td></tr><tr><td>Hair / salon</td><td>15–20%</td></tr><tr><td>Hotel housekeeping</td><td>$2–5 per night</td></tr></table></div>
+<p class="small muted">Customs vary by country; in many places service is included. This is general guidance only.</p>
+<h2>FAQ</h2><div class="faq"><details><summary>Is 18% a good tip?</summary><p>18% is a common standard for sit-down service in North American cities; 20% for excellent service.</p></details><details><summary>Do I tip on takeout?</summary><p>It's optional; many people leave 10% or round up for larger or complex orders.</p></details></div></div></section>
+<section><div class="container"><div class="banner reveal">
+  <div class="grid g2" style="align-items:center">
+    <div><span class="eyebrow" style="color:var(--accent)">Free · 48-hour reply · No spam</span>
+      <h2 style="color:#fff">Stop comparing 40 tabs. Get ONE answer.</h2>
+      <p class="muted">Tell us what you're deciding. A real person sends you one clear pick — or connects you with vetted providers for quotes when that saves you more.</p></div>
+    <div class="cta-row" style="justify-content:flex-end"><a class="btn btn-accent" href="get-matched.html">Get my 1 pick →</a><a class="btn btn-ghost" href="picks.html">Browse guides</a></div>
+  </div></div></div></section>
+<section style="padding-top:0"><div class="container"><h2>More one-minute tools</h2><div class="grid g3"><a class="card link reveal" href="split-bill.html"><div class="ico" aria-hidden="true">🧾</div><h3>Split the Bill</h3><p class="muted">Tax, tip, uneven orders — everyone's fair share in seconds.</p><span>Open tool →</span></a><a class="card link reveal" href="unit-price.html"><div class="ico" aria-hidden="true">⚖️</div><h3>Unit Price Comparer</h3><p class="muted">Which size is really cheaper? Compare per 100 g, per ml or per each.</p><span>Open tool →</span></a><a class="card link reveal" href="cost-per-use.html"><div class="ico" aria-hidden="true">🔁</div><h3>Cost Per Use</h3><p class="muted">When the expensive one is actually the cheaper buy.</p><span>Open tool →</span></a><a class="card link reveal" href="trip-splitter.html"><div class="ico" aria-hidden="true">🧳</div><h3>Group Trip Settle-Up</h3><p class="muted">Who owes whom — with the fewest transfers.</p><span>Open tool →</span></a><a class="card link reveal" href="subscription-audit.html"><div class="ico" aria-hidden="true">📆</div><h3>Subscription Audit</h3><p class="muted">See your yearly total and what cutting one is worth.</p><span>Open tool →</span></a></div></div></section>
+<div class="ad-slot" data-pos="footer" aria-label="Advertisement"></div>

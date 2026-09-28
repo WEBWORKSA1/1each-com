@@ -1,0 +1,36 @@
+---
+layout: default
+file: "trip-splitter.html"
+title: "Group Trip Settle-Up — Free, Instant | 1Each"
+description: "Split group trip, roommate or event expenses. Log who paid what and get the fewest transfers to settle everyone up."
+canon: "trip-splitter.html"
+js: ["tools.js"]
+---
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can I split unequally?", "acceptedAnswer": {"@type": "Answer", "text": "This version splits every expense equally. For different shares, use Split the Bill's by-items mode for each expense."}}, {"@type": "Question", "name": "Is anything saved?", "acceptedAnswer": {"@type": "Answer", "text": "No. Refreshing clears the list — screenshot or share the transfer list with your group."}}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Group Trip Settle-Up", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "url": "https://1each.com/trip-splitter.html"}</script><section class="page-hero"><div class="container">
+  <div class="crumbs"><a href="index.html">Home</a> / <a href="tools.html">Tools</a> / Group Trip Settle-Up</div>
+  <span class="eyebrow">Free tool · No sign-up · Works offline</span><h1>Group Trip Settle-Up</h1><p class="muted" style="font-size:1.15rem;max-width:720px">Log who paid; get the fewest transfers to square up.</p>
+</div></section>
+<section style="padding-top:32px"><div class="container">
+  <div style="display:flex;justify-content:flex-end;gap:8px;align-items:center;margin-bottom:12px"><span class="small muted">Currency</span><select class="cur-select" aria-label="Currency" style="width:auto;padding:6px 10px">
+<option>USD</option><option>CAD</option><option>EUR</option><option>GBP</option><option>INR</option><option>AUD</option><option>AED</option><option>LKR</option></select><button class="btn btn-ghost btn-sm" data-share>Share</button></div>
+  <div class="tool" id="tool-trip">
+    <div class="card"><label for="tr-name">People</label><div style="display:flex;gap:8px;margin-bottom:10px"><input id="tr-name" placeholder="Add a name"><button type="button" class="btn btn-ghost" id="tr-add-p">Add</button></div>
+<div id="tr-people" class="chips" style="margin-bottom:16px"></div>
+<label>Expenses (paid by · amount · what for)</label><div id="tr-exps"></div><button type="button" class="btn btn-ghost btn-sm" id="tr-add-e">+ Add expense</button>
+<p class="form-note" style="margin-top:12px">All expenses are split equally among everyone listed.</p></div>
+    <div><div class="result" aria-live="polite"><div class="small" style="opacity:.85">Fair share each</div><div class="big" id="tr-each">—</div>
+<table><tbody id="tr-out"></tbody></table></div><div class="card" style="margin-top:16px"><strong>Settle up with these transfers</strong><div class="working" id="tr-tx"></div></div></div>
+  </div>
+</div></section>
+<div class="ad-slot" data-pos="inArticle" aria-label="Advertisement"></div>
+<section><div class="container prose"><h2>How we minimise transfers</h2><p>We compute each person's balance (what they paid minus their fair share), then match the biggest debtor with the biggest creditor repeatedly. This settles a group with at most n − 1 payments.</p>
+<h2>FAQ</h2><div class="faq"><details><summary>Can I split unequally?</summary><p>This version splits every expense equally. For different shares, use Split the Bill's by-items mode for each expense.</p></details><details><summary>Is anything saved?</summary><p>No. Refreshing clears the list — screenshot or share the transfer list with your group.</p></details></div></div></section>
+<section><div class="container"><div class="banner reveal">
+  <div class="grid g2" style="align-items:center">
+    <div><span class="eyebrow" style="color:var(--accent)">Free · 48-hour reply · No spam</span>
+      <h2 style="color:#fff">Stop comparing 40 tabs. Get ONE answer.</h2>
+      <p class="muted">Tell us what you're deciding. A real person sends you one clear pick — or connects you with vetted providers for quotes when that saves you more.</p></div>
+    <div class="cta-row" style="justify-content:flex-end"><a class="btn btn-accent" href="get-matched.html">Get my 1 pick →</a><a class="btn btn-ghost" href="picks.html">Browse guides</a></div>
+  </div></div></div></section>
+<section style="padding-top:0"><div class="container"><h2>More one-minute tools</h2><div class="grid g3"><a class="card link reveal" href="split-bill.html"><div class="ico" aria-hidden="true">🧾</div><h3>Split the Bill</h3><p class="muted">Tax, tip, uneven orders — everyone's fair share in seconds.</p><span>Open tool →</span></a><a class="card link reveal" href="unit-price.html"><div class="ico" aria-hidden="true">⚖️</div><h3>Unit Price Comparer</h3><p class="muted">Which size is really cheaper? Compare per 100 g, per ml or per each.</p><span>Open tool →</span></a><a class="card link reveal" href="cost-per-use.html"><div class="ico" aria-hidden="true">🔁</div><h3>Cost Per Use</h3><p class="muted">When the expensive one is actually the cheaper buy.</p><span>Open tool →</span></a><a class="card link reveal" href="tip-calculator.html"><div class="ico" aria-hidden="true">💵</div><h3>Tip Calculator</h3><p class="muted">Right tip, rounded smart, split any number of ways.</p><span>Open tool →</span></a><a class="card link reveal" href="subscription-audit.html"><div class="ico" aria-hidden="true">📆</div><h3>Subscription Audit</h3><p class="muted">See your yearly total and what cutting one is worth.</p><span>Open tool →</span></a></div></div></section>
+<div class="ad-slot" data-pos="footer" aria-label="Advertisement"></div>
