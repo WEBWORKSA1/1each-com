@@ -1,0 +1,80 @@
+---
+layout: default
+file: "index.html"
+title: "1Each — One Smart Answer for Each Decision"
+description: "The one best pick for each need, free calculators for the true cost of each option, and a fair split every time. Tools, guides, videos and contests."
+canon: ""
+js: ["tools.js", "picks.js"]
+---
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebSite", "name": "1Each", "url": "https://1each.com/", "potentialAction": {"@type": "SearchAction", "target": "https://1each.com/picks.html?q={q}", "query-input": "required name=q"}}, {"@context": "https://schema.org", "@type": "Organization", "name": "1Each", "url": "https://1each.com/", "logo": "https://1each.com/assets/img/favicon.svg"}]</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is 1Each?", "acceptedAnswer": {"@type": "Answer", "text": "1Each gives one clear answer for each everyday decision: a single best-value pick per category, free calculators that show the true cost of each option, and a fair split for every shared bill."}}, {"@type": "Question", "name": "Is 1Each free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Every guide and tool is free, with no sign-up. We're supported by ads, affiliate commissions, sponsors and reader donations — never by paid rankings."}}, {"@type": "Question", "name": "How do you choose the one pick?", "acceptedAnswer": {"@type": "Answer", "text": "We start from a single decision rule per category, apply a checklist of must-haves, then give a budget, top and upgrade option. The math behind every tool is shown on the page."}}, {"@type": "Question", "name": "Can I get a personal recommendation?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — use Get Matched. Tell us your budget and must-haves and a person replies with one pick, usually within 48 hours."}}]}</script>
+<section class="hero"><div class="container hero-grid">
+  <div>
+    <span class="eyebrow">Best pick · True cost · Fair split</span>
+    <h1>One smart answer.<br><span class="hl">For each decision.</span></h1>
+    <p class="lead">Skip the 40 tabs. 1Each gives you the <strong>one</strong> pick worth buying, the real cost of <strong>each</strong> option, and exactly what everyone owes — in under a minute.</p>
+    <div class="cta-row"><a class="btn btn-primary" href="get-matched.html">🎯 Get my 1 pick — free</a><a class="btn btn-ghost" href="tools.html">Try the tools</a></div>
+    <div class="trust"><span>Free, no sign-up</span><span>No paid rankings</span><span>Math shown on every tool</span><span>Private: tools run in your browser</span></div>
+  </div>
+  <div class="card" id="hero-split" style="border-radius:24px">
+    <div style="display:flex;justify-content:space-between;align-items:center"><strong>Quick split</strong><a class="small" href="split-bill.html">Full calculator →</a></div>
+    <div class="row2" style="margin-top:12px">
+      <div class="field"><label for="hs-bill">Bill</label><input id="hs-bill" type="number" min="0" step="0.01" value="128.40" inputmode="decimal"></div>
+      <div class="field"><label for="hs-people">People</label><input id="hs-people" type="number" min="1" value="4" inputmode="numeric"></div>
+    </div>
+    <label>Tip</label><input type="hidden" id="hs-tip" value="18">
+    <div class="chips" id="hs-tips"><button class="chip" data-v="0">0%</button><button class="chip" data-v="15">15%</button><button class="chip active" data-v="18">18%</button><button class="chip" data-v="20">20%</button><button class="chip" data-v="25">25%</button></div>
+    <div class="result" style="margin-top:16px"><div class="small" style="opacity:.85">Each person pays</div><div class="big" id="hs-each">—</div><div class="small" id="hs-sub" style="opacity:.85;margin-top:6px"></div></div>
+  </div>
+</div></section>
+<div class="ad-slot" data-pos="top" aria-label="Advertisement"></div>
+<section><div class="container">
+  <div class="section-head"><div><span class="eyebrow">Start with your moment</span><h2>What are you deciding right now?</h2></div></div>
+  <div class="grid g3">
+    <a class="card link reveal" href="split-bill.html"><div class="ico">🍽️</div><h3>Dinner with friends</h3><p class="muted">Tax, tip and who-had-what — settled before the check lands.</p></a>
+    <a class="card link reveal" href="trip-splitter.html"><div class="ico">🏕️</div><h3>Group trip or roommates</h3><p class="muted">Log who paid; we compute the fewest transfers to square up.</p></a>
+    <a class="card link reveal" href="unit-price.html"><div class="ico">🛒</div><h3>Grocery aisle</h3><p class="muted">Big pack or small? The per-unit price answers in 5 seconds.</p></a>
+    <a class="card link reveal" href="cost-per-use.html"><div class="ico">👟</div><h3>A bigger purchase</h3><p class="muted">Cost-per-use shows when "expensive" is the smart buy.</p></a>
+    <a class="card link reveal" href="subscription-audit.html"><div class="ico">📺</div><h3>Monthly subscriptions</h3><p class="muted">See the yearly total and what cutting one is really worth.</p></a>
+    <a class="card link reveal" href="get-matched.html"><div class="ico">🎯</div><h3>"Just tell me what to buy"</h3><p class="muted">Get one personal recommendation from a human, free.</p></a>
+  </div>
+</div></section>
+<section style="background:var(--surface)"><div class="container">
+  <div class="section-head"><div><span class="eyebrow">One Pick guides</span><h2>The one rule for each thing you buy</h2><p class="muted" style="margin:0">Each guide: 1 decision rule, a must-have checklist, and a budget / top / upgrade pick.</p></div><a class="btn btn-ghost" href="picks.html">All guides →</a></div>
+  <div class="grid g3" id="picks-grid" data-limit="6"></div>
+</div></section>
+<section><div class="container">
+  <div class="section-head"><div><span class="eyebrow">Free tools</span><h2>Know the true cost of each option</h2></div><a class="btn btn-ghost" href="tools.html">All tools →</a></div>
+  <div class="grid g3"><a class="card link reveal" href="split-bill.html"><div class="ico" aria-hidden="true">🧾</div><h3>Split the Bill</h3><p class="muted">Tax, tip, uneven orders — everyone's fair share in seconds.</p><span>Open tool →</span></a><a class="card link reveal" href="unit-price.html"><div class="ico" aria-hidden="true">⚖️</div><h3>Unit Price Comparer</h3><p class="muted">Which size is really cheaper? Compare per 100 g, per ml or per each.</p><span>Open tool →</span></a><a class="card link reveal" href="cost-per-use.html"><div class="ico" aria-hidden="true">🔁</div><h3>Cost Per Use</h3><p class="muted">When the expensive one is actually the cheaper buy.</p><span>Open tool →</span></a><a class="card link reveal" href="tip-calculator.html"><div class="ico" aria-hidden="true">💵</div><h3>Tip Calculator</h3><p class="muted">Right tip, rounded smart, split any number of ways.</p><span>Open tool →</span></a><a class="card link reveal" href="trip-splitter.html"><div class="ico" aria-hidden="true">🧳</div><h3>Group Trip Settle-Up</h3><p class="muted">Who owes whom — with the fewest transfers.</p><span>Open tool →</span></a><a class="card link reveal" href="subscription-audit.html"><div class="ico" aria-hidden="true">📆</div><h3>Subscription Audit</h3><p class="muted">See your yearly total and what cutting one is worth.</p><span>Open tool →</span></a></div>
+</div></section>
+<section><div class="container"><div class="banner reveal">
+  <div class="grid g2" style="align-items:center">
+    <div><span class="eyebrow" style="color:var(--accent)">Free · 48-hour reply · No spam</span>
+      <h2 style="color:#fff">Stop comparing 40 tabs. Get ONE answer.</h2>
+      <p class="muted">Tell us what you're deciding. A real person sends you one clear pick — or connects you with vetted providers for quotes when that saves you more.</p></div>
+    <div class="cta-row" style="justify-content:flex-end"><a class="btn btn-accent" href="get-matched.html">Get my 1 pick →</a><a class="btn btn-ghost" href="picks.html">Browse guides</a></div>
+  </div></div></div></section>
+<section><div class="container">
+  <div class="section-head"><div><span class="eyebrow">Watch</span><h2>Money-smart in 60 seconds</h2></div><a class="btn btn-ghost" href="videos.html">All videos →</a></div>
+  <div class="grid g3" id="video-grid" data-limit="3"></div>
+</div></section>
+<div class="ad-slot" data-pos="inArticle" aria-label="Advertisement"></div>
+<section><div class="container"><div class="banner reveal">
+  <div class="grid g2" style="align-items:center">
+    <div><span class="eyebrow" style="color:var(--accent)">Contest open</span><h2 style="color:#fff" data-contest-name>The Split-It Challenge</h2>
+      <p class="muted">Share your best money-saving "one each" tip. Prize: <strong style="color:#fff" data-contest-prize></strong>. Bonus entries for every friend you refer.</p>
+      <a class="btn btn-accent" href="contests.html">Enter free →</a></div>
+    <div><div class="countdown" id="countdown" aria-label="Time left"></div></div>
+  </div></div></div></section>
+<section style="background:var(--surface)"><div class="container grid g2" style="align-items:center">
+  <div><span class="eyebrow">Why trust 1Each</span><h2>Independent by design</h2>
+    <p class="muted">Rankings are never for sale. Sponsors are labelled. Every calculator shows its formula, so you can check our work.</p>
+    <div class="stats" style="margin-top:20px"><div class="stat"><b>6</b>free tools</div><div class="stat"><b>18</b>One Pick guides</div><div class="stat"><b>0</b>paid rankings</div><div class="stat"><b>48h</b>pick reply</div></div></div>
+  <div class="card"><h3>Keep 1Each free &amp; independent</h3><p class="muted">Reader support funds operations, promotion, new tools, hiring writers and contest prizes.</p>
+    <div class="alloc"><span>Operations</span><div class="bar"><i style="width:35%"></i></div><b>35%</b></div>
+    <div class="alloc"><span>New content &amp; talent</span><div class="bar"><i style="width:30%"></i></div><b>30%</b></div>
+    <div class="alloc"><span>Marketing &amp; promotion</span><div class="bar"><i style="width:20%"></i></div><b>20%</b></div>
+    <div class="alloc"><span>Contests &amp; prizes</span><div class="bar"><i style="width:15%"></i></div><b>15%</b></div>
+    <a class="btn btn-primary" href="support.html">♥ Support 1Each</a></div>
+</div></section>
+<section><div class="container prose" style="margin:0 auto"><h2 class="center">Questions</h2><div class="faq"><details><summary>What is 1Each?</summary><p>1Each gives one clear answer for each everyday decision: a single best-value pick per category, free calculators that show the true cost of each option, and a fair split for every shared bill.</p></details><details><summary>Is 1Each free?</summary><p>Yes. Every guide and tool is free, with no sign-up. We're supported by ads, affiliate commissions, sponsors and reader donations — never by paid rankings.</p></details><details><summary>How do you choose the one pick?</summary><p>We start from a single decision rule per category, apply a checklist of must-haves, then give a budget, top and upgrade option. The math behind every tool is shown on the page.</p></details><details><summary>Can I get a personal recommendation?</summary><p>Yes — use Get Matched. Tell us your budget and must-haves and a person replies with one pick, usually within 48 hours.</p></details></div></div></section>
+<div class="ad-slot" data-pos="footer" aria-label="Advertisement"></div>
