@@ -1,0 +1,45 @@
+---
+layout: default
+file: "cost-per-use.html"
+title: "Cost Per Use Calculator — Free, Instant | 1Each"
+description: "Compare two purchases by true cost per use, including upkeep and resale value. Find out when the expensive option is actually cheaper."
+canon: "cost-per-use.html"
+js: ["tools.js"]
+---
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What counts as a use?", "acceptedAnswer": {"@type": "Answer", "text": "Anything you'd reasonably count: a wear, a ride, a cook, a session. Keep it consistent across both options."}}, {"@type": "Question", "name": "Should I include resale value?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, if you'd realistically sell it. Quality items often keep resale value, which lowers their true cost."}}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Cost Per Use Calculator", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "url": "https://1each.com/cost-per-use.html"}</script><section class="page-hero"><div class="container">
+  <div class="crumbs"><a href="index.html">Home</a> / <a href="tools.html">Tools</a> / Cost Per Use Calculator</div>
+  <span class="eyebrow">Free tool · No sign-up · Works offline</span><h1>Cost Per Use Calculator</h1><p class="muted" style="font-size:1.15rem;max-width:720px">Compare two options by what each use really costs — upkeep and resale included.</p>
+</div></section>
+<section style="padding-top:32px"><div class="container">
+  <div style="display:flex;justify-content:flex-end;gap:8px;align-items:center;margin-bottom:12px"><span class="small muted">Currency</span><select class="cur-select" aria-label="Currency" style="width:auto;padding:6px 10px">
+<option>USD</option><option>CAD</option><option>EUR</option><option>GBP</option><option>INR</option><option>AUD</option><option>AED</option><option>LKR</option></select><button class="btn btn-ghost btn-sm" data-share>Share</button></div>
+  <div class="tool" id="tool-cpu">
+    <div class="card"><fieldset style="border:1px solid var(--line);border-radius:12px;padding:14px;margin:0 0 14px"><legend class="small" style="padding:0 6px"><strong>Option A</strong></legend>
+<div class="field"><input id="cpu-a-name" value="Cheap boots" aria-label="Option a name"></div>
+<div class="row2"><div class="field"><label for="cpu-a-price">Price</label><input id="cpu-a-price" type="number" min="0" step="0.01" value="60"></div>
+<div class="field"><label for="cpu-a-uses">Uses per week</label><input id="cpu-a-uses" type="number" min="0" step="0.1" value="3"></div>
+<div class="field"><label for="cpu-a-years">Years it lasts</label><input id="cpu-a-years" type="number" min="0" step="0.1" value="1"></div>
+<div class="field"><label for="cpu-a-maint">Upkeep per year</label><input id="cpu-a-maint" type="number" min="0" step="0.01" value="0"></div></div>
+<div class="field" style="margin:0"><label for="cpu-a-resale">Resale value at end</label><input id="cpu-a-resale" type="number" min="0" step="0.01" value="0"></div></fieldset><fieldset style="border:1px solid var(--line);border-radius:12px;padding:14px;margin:0 0 14px"><legend class="small" style="padding:0 6px"><strong>Option B</strong></legend>
+<div class="field"><input id="cpu-b-name" value="Quality boots" aria-label="Option b name"></div>
+<div class="row2"><div class="field"><label for="cpu-b-price">Price</label><input id="cpu-b-price" type="number" min="0" step="0.01" value="240"></div>
+<div class="field"><label for="cpu-b-uses">Uses per week</label><input id="cpu-b-uses" type="number" min="0" step="0.1" value="3"></div>
+<div class="field"><label for="cpu-b-years">Years it lasts</label><input id="cpu-b-years" type="number" min="0" step="0.1" value="6"></div>
+<div class="field"><label for="cpu-b-maint">Upkeep per year</label><input id="cpu-b-maint" type="number" min="0" step="0.01" value="15"></div></div>
+<div class="field" style="margin:0"><label for="cpu-b-resale">Resale value at end</label><input id="cpu-b-resale" type="number" min="0" step="0.01" value="30"></div></fieldset></div>
+    <div><div class="result" aria-live="polite"><div class="small" style="opacity:.85">Lower cost per use</div><div class="big" id="cpu-best">—</div>
+<table><tbody id="cpu-out"></tbody></table></div><div class="working" id="cpu-work"></div></div>
+  </div>
+</div></section>
+<div class="ad-slot" data-pos="inArticle" aria-label="Advertisement"></div>
+<section><div class="container prose"><h2>The "buy once" math</h2><p>A $240 pair that lasts six years costs less per wear than a $60 pair replaced every year. Cost per use turns that instinct into a number — and also shows when the cheap option wins because you'll rarely use it.</p>
+<h2>FAQ</h2><div class="faq"><details><summary>What counts as a use?</summary><p>Anything you'd reasonably count: a wear, a ride, a cook, a session. Keep it consistent across both options.</p></details><details><summary>Should I include resale value?</summary><p>Yes, if you'd realistically sell it. Quality items often keep resale value, which lowers their true cost.</p></details></div></div></section>
+<section><div class="container"><div class="banner reveal">
+  <div class="grid g2" style="align-items:center">
+    <div><span class="eyebrow" style="color:var(--accent)">Free · 48-hour reply · No spam</span>
+      <h2 style="color:#fff">Stop comparing 40 tabs. Get ONE answer.</h2>
+      <p class="muted">Tell us what you're deciding. A real person sends you one clear pick — or connects you with vetted providers for quotes when that saves you more.</p></div>
+    <div class="cta-row" style="justify-content:flex-end"><a class="btn btn-accent" href="get-matched.html">Get my 1 pick →</a><a class="btn btn-ghost" href="picks.html">Browse guides</a></div>
+  </div></div></div></section>
+<section style="padding-top:0"><div class="container"><h2>More one-minute tools</h2><div class="grid g3"><a class="card link reveal" href="split-bill.html"><div class="ico" aria-hidden="true">🧾</div><h3>Split the Bill</h3><p class="muted">Tax, tip, uneven orders — everyone's fair share in seconds.</p><span>Open tool →</span></a><a class="card link reveal" href="unit-price.html"><div class="ico" aria-hidden="true">⚖️</div><h3>Unit Price Comparer</h3><p class="muted">Which size is really cheaper? Compare per 100 g, per ml or per each.</p><span>Open tool →</span></a><a class="card link reveal" href="tip-calculator.html"><div class="ico" aria-hidden="true">💵</div><h3>Tip Calculator</h3><p class="muted">Right tip, rounded smart, split any number of ways.</p><span>Open tool →</span></a><a class="card link reveal" href="trip-splitter.html"><div class="ico" aria-hidden="true">🧳</div><h3>Group Trip Settle-Up</h3><p class="muted">Who owes whom — with the fewest transfers.</p><span>Open tool →</span></a><a class="card link reveal" href="subscription-audit.html"><div class="ico" aria-hidden="true">📆</div><h3>Subscription Audit</h3><p class="muted">See your yearly total and what cutting one is worth.</p><span>Open tool →</span></a></div></div></section>
+<div class="ad-slot" data-pos="footer" aria-label="Advertisement"></div>

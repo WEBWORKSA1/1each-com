@@ -1,0 +1,43 @@
+---
+layout: default
+file: "split-bill.html"
+title: "Split the Bill Calculator — Free, Instant | 1Each"
+description: "Split a restaurant bill with tax and tip — evenly or by what each person ordered. See exactly what each person owes, with the math shown."
+canon: "split-bill.html"
+js: ["tools.js"]
+---
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Should tax be split evenly?", "acceptedAnswer": {"@type": "Answer", "text": "Tax should follow what each person ordered. Our by-items mode applies tax proportionally, which is the fairest method."}}, {"@type": "Question", "name": "What is a normal tip?", "acceptedAnswer": {"@type": "Answer", "text": "In the US and Canada, 15–20% for table service is typical; 18–20% is common in cities. Many countries include service — check the bill."}}, {"@type": "Question", "name": "Does this store my data?", "acceptedAnswer": {"@type": "Answer", "text": "No. The calculation runs entirely in your browser."}}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Split the Bill Calculator", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "url": "https://1each.com/split-bill.html"}</script><section class="page-hero"><div class="container">
+  <div class="crumbs"><a href="index.html">Home</a> / <a href="tools.html">Tools</a> / Split the Bill Calculator</div>
+  <span class="eyebrow">Free tool · No sign-up · Works offline</span><h1>Split the Bill Calculator</h1><p class="muted" style="font-size:1.15rem;max-width:720px">Evenly or by what each person ordered — tax and tip included, math shown.</p>
+</div></section>
+<section style="padding-top:32px"><div class="container">
+  <div style="display:flex;justify-content:flex-end;gap:8px;align-items:center;margin-bottom:12px"><span class="small muted">Currency</span><select class="cur-select" aria-label="Currency" style="width:auto;padding:6px 10px">
+<option>USD</option><option>CAD</option><option>EUR</option><option>GBP</option><option>INR</option><option>AUD</option><option>AED</option><option>LKR</option></select><button class="btn btn-ghost btn-sm" data-share>Share</button></div>
+  <div class="tool" id="tool-split">
+    <div class="card"><div class="seg" role="tablist" style="margin-bottom:16px"><button class="active" data-mode="equal">Split evenly</button><button data-mode="items">By what each ordered</button></div>
+<div id="sb-equal"><div class="row2"><div class="field"><label for="sb-bill">Subtotal (before tax)</label><input id="sb-bill" type="number" min="0" step="0.01" value="142.60" inputmode="decimal"></div>
+<div class="field"><label for="sb-ppl">People</label><input id="sb-ppl" type="number" min="1" value="4" inputmode="numeric"></div></div></div>
+<div id="sb-items" style="display:none"><label>People and their own items</label><div id="sb-people"></div><button type="button" class="btn btn-ghost btn-sm" id="sb-add">+ Add person</button>
+<div class="field" style="margin-top:12px"><label for="sb-shared">Shared items (split equally)</label><input id="sb-shared" type="number" min="0" step="0.01" value="22"></div></div>
+<div class="row2"><div class="field"><label for="sb-tax">Tax %</label><input id="sb-tax" type="number" min="0" step="0.01" value="13"></div>
+<div class="field"><label>Tip %</label><input id="sb-tip" type="number" min="0" step="0.5" value="18"></div></div>
+<div class="chips" id="sb-tips" style="margin:-6px 0 14px"><button class="chip" data-v="15">15%</button><button class="chip active" data-v="18">18%</button><button class="chip" data-v="20">20%</button><button class="chip" data-v="22">22%</button></div>
+<label class="check"><input type="checkbox" id="sb-tippre" checked> Tip on pre-tax amount (common etiquette)</label>
+<label class="check"><input type="checkbox" id="sb-round"> Round each share up to a whole number</label></div>
+    <div><div class="result" aria-live="polite"><div class="small" style="opacity:.85">Each person pays</div><div class="big" id="sb-each">—</div>
+<table><tbody id="sb-out"></tbody></table></div><div class="working" id="sb-work"></div></div>
+  </div>
+</div></section>
+<div class="ad-slot" data-pos="inArticle" aria-label="Advertisement"></div>
+<section><div class="container prose"><h2>How to split a bill fairly</h2><p>Splitting evenly is fastest when orders are similar. When one person had a steak and another had soup, split by items: each person pays their own items plus an equal share of anything shared (appetizers, a bottle), then tax and tip are applied proportionally so nobody subsidises anybody.</p>
+<h2>Tip on pre-tax or post-tax?</h2><p>Etiquette guides generally suggest tipping on the pre-tax subtotal. The difference is small on a single meal — on a $150 bill with 13% tax and 18% tip, it's about $3.51 — but the toggle lets your group choose.</p>
+<h2>FAQ</h2><div class="faq"><details><summary>Should tax be split evenly?</summary><p>Tax should follow what each person ordered. Our by-items mode applies tax proportionally, which is the fairest method.</p></details><details><summary>What is a normal tip?</summary><p>In the US and Canada, 15–20% for table service is typical; 18–20% is common in cities. Many countries include service — check the bill.</p></details><details><summary>Does this store my data?</summary><p>No. The calculation runs entirely in your browser.</p></details></div></div></section>
+<section><div class="container"><div class="banner reveal">
+  <div class="grid g2" style="align-items:center">
+    <div><span class="eyebrow" style="color:var(--accent)">Free · 48-hour reply · No spam</span>
+      <h2 style="color:#fff">Stop comparing 40 tabs. Get ONE answer.</h2>
+      <p class="muted">Tell us what you're deciding. A real person sends you one clear pick — or connects you with vetted providers for quotes when that saves you more.</p></div>
+    <div class="cta-row" style="justify-content:flex-end"><a class="btn btn-accent" href="get-matched.html">Get my 1 pick →</a><a class="btn btn-ghost" href="picks.html">Browse guides</a></div>
+  </div></div></div></section>
+<section style="padding-top:0"><div class="container"><h2>More one-minute tools</h2><div class="grid g3"><a class="card link reveal" href="unit-price.html"><div class="ico" aria-hidden="true">⚖️</div><h3>Unit Price Comparer</h3><p class="muted">Which size is really cheaper? Compare per 100 g, per ml or per each.</p><span>Open tool →</span></a><a class="card link reveal" href="cost-per-use.html"><div class="ico" aria-hidden="true">🔁</div><h3>Cost Per Use</h3><p class="muted">When the expensive one is actually the cheaper buy.</p><span>Open tool →</span></a><a class="card link reveal" href="tip-calculator.html"><div class="ico" aria-hidden="true">💵</div><h3>Tip Calculator</h3><p class="muted">Right tip, rounded smart, split any number of ways.</p><span>Open tool →</span></a><a class="card link reveal" href="trip-splitter.html"><div class="ico" aria-hidden="true">🧳</div><h3>Group Trip Settle-Up</h3><p class="muted">Who owes whom — with the fewest transfers.</p><span>Open tool →</span></a><a class="card link reveal" href="subscription-audit.html"><div class="ico" aria-hidden="true">📆</div><h3>Subscription Audit</h3><p class="muted">See your yearly total and what cutting one is worth.</p><span>Open tool →</span></a></div></div></section>
+<div class="ad-slot" data-pos="footer" aria-label="Advertisement"></div>
