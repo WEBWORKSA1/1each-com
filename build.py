@@ -1,0 +1,160 @@
+#!/usr/bin/env python3
+"""1Each.com static site generator.
+Run:  python3 build.py   -> writes every .html page + sitemap/search index into the repo root.
+No dependencies. Output is plain static HTML that GitHub Pages serves for free."""
+import json, os, datetime
+from pages import PAGES  # page bodies live in pages.py
+
+ROOT = os.path.dirname(os.path.abspath(__file__))
+SITE = "https://1each.com/"
+TODAY = datetime.date.today().isoformat()
+V = TODAY.replace("-", "")  # cache-busting version
+
+NAV = [("picks.html", "Picks"), ("tools.html", "Tools"), ("videos.html", "Videos"), ("get-matched.html", "Get Matched"),
+       ("contests.html", "Contests"), ("support.html", "Support"), ("advertise.html", "Advertise")]
+
+def head(p):
+    ld = p.get("ld", "")
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{p['title']}</title>
+<meta name="description" content="{p['desc']}">
+<link rel="canonical" href="{SITE}{'' if p['file']=='index.html' else p['file']}">
+<meta name="robots" content="{p.get('robots','index,follow,max-image-preview:large')}">
+<meta name="theme-color" content="#5b3df5">
+<meta property="og:type" content="website"><meta property="og:site_name" content="1Each">
+<meta property="og:title" content="{p['title']}"><meta property="og:description" content="{p['desc']}">
+<meta property="og:url" content="{SITE}{'' if p['file']=='index.html' else p['file']}"><meta property="og:image" content="{SITE}assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v={V}">
+<script>try{{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}}catch(e){{}}</script>
+{ld}
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="topbar" role="note">Contact, if you are interested in this website / domain name / Sponsorship / Advertisement / Partnership — <a href="https://web.works/contact" target="_blank" rel="noopener">web.works/contact</a></div>
+<header class="header"><div class="container row">
+  <a class="logo" href="index.html" aria-label="1Each home"><span class="mark">1</span>1Each</a>
+  <nav class="nav" id="nav" aria-label="Main">{''.join(f'<a href="{u}"' + (' aria-current="page"' if u==p['file'] else '') + f'>{t}</a>' for u,t in NAV)}</nav>
+  <div class="hdr-actions">
+    <button class="icon-btn" data-open="search-modal" aria-label="Search (press /)">🔍</button>
+    <button class="icon-btn" id="theme-toggle" aria-label="Toggle dark mode">🌓</button>
+    <a class="btn btn-primary btn-sm" href="get-matched.html">Get my 1 pick</a>
+    <button class="icon-btn menu-btn" id="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="nav">☰</button>
+  </div>
+</div></header>
+<main id="main">
+"""
+
+def foot(p):
+    extra = "".join(f'<script src="assets/js/{s}?v={V}" defer></script>' for s in p.get("js", []))
+    return f"""</main>
+<section style="padding-top:0"><div class="container">
+  <div class="newsletter reveal">
+    <div class="eyebrow" style="color:var(--accent)">The 1Each Letter</div>
+    <h2 style="color:#fff">One smart pick, each week. Free.</h2>
+    <p style="opacity:.9;margin:0">The best-value pick, one money tool and one deal alert — a 2-minute read. Unsubscribe anytime.</p>
+    <form class="js-form" data-subject="Newsletter signup" data-ok="You're in! Watch your inbox for the next edition.">
+      <div class="hp"><input name="_hp" tabindex="-1" autocomplete="off"></div>
+      <input type="email" name="email" required placeholder="you@email.com" aria-label="Email">
+      <input type="hidden" name="list" value="weekly">
+      <button class="btn btn-accent" type="submit">Subscribe</button>
+      <div class="form-msg" role="status" style="flex-basis:100%"></div>
+    </form>
+  </div>
+</div></section>
+<footer class="footer"><div class="container">
+  <div class="cols">
+    <div>
+      <a class="logo" href="index.html" style="color:#fff"><span class="mark">1</span>1Each</a>
+      <p style="margin-top:12px">One clear answer for each decision: the best pick, the true cost, the fair split.</p>
+      <a class="btn btn-accent btn-sm" href="support.html">♥ Support 1Each</a>
+    </div>
+    <div><h4>Decide</h4><ul><li><a href="picks.html">One Pick guides</a></li><li><a href="get-matched.html">Get matched</a></li><li><a href="videos.html">Videos</a></li><li><a href="about.html#how-we-choose">How we choose</a></li></ul></div>
+    <div><h4>Tools</h4><ul><li><a href="split-bill.html">Split the bill</a></li><li><a href="unit-price.html">Unit price</a></li><li><a href="cost-per-use.html">Cost per use</a></li><li><a href="tip-calculator.html">Tip calculator</a></li><li><a href="trip-splitter.html">Trip settle-up</a></li><li><a href="subscription-audit.html">Subscription audit</a></li></ul></div>
+    <div><h4>Community</h4><ul><li><a href="contests.html">Contests &amp; prizes</a></li><li><a href="support.html">Donate / support</a></li><li><a href="careers.html">Careers &amp; talent</a></li><li><a href="advertise.html">Advertise / sponsor</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div><h4>Legal</h4><ul><li><a href="privacy.html">Privacy</a></li><li><a href="terms.html">Terms</a></li><li><a href="disclosure.html">Affiliate &amp; trademark disclosure</a></li><li><a href="cookies.html">Cookies</a></li><li><a href="about.html">About</a></li></ul></div>
+  </div>
+  <div class="legal">
+    <p>© <span data-year>2026</span> 1Each.com. All original content, tools and design are protected by copyright. "1Each" is used as a descriptive site name meaning "one each"; this site is independent and is not affiliated with, endorsed by, or sponsored by any company, product or trademark owner using a similar name. All third-party names and marks belong to their respective owners and are used for identification only. Some links may be affiliate links — we may earn a commission at no extra cost to you. Content is general information, not financial, legal or medical advice. <a href="disclosure.html">Full disclosure</a>.</p>
+    <p>Interested in this website, the domain name, sponsorship, advertising or partnership? <a href="https://web.works/contact" target="_blank" rel="noopener">web.works/contact</a></p>
+  </div>
+</div></footer>
+
+<div class="modal" id="search-modal" role="dialog" aria-modal="true" aria-label="Search"><div class="box">
+  <button class="icon-btn close" aria-label="Close">✕</button>
+  <h3>Search 1Each</h3><input id="search-input" type="search" placeholder="Try: split, tip, laptop, donate…" aria-label="Search">
+  <div id="search-results" style="margin-top:12px"></div>
+</div></div>
+<div class="modal" id="exit-modal" role="dialog" aria-modal="true" aria-label="Get your pick"><div class="box">
+  <button class="icon-btn close" aria-label="Close">✕</button>
+  <div class="eyebrow">Before you go</div><h3>Stuck choosing? Get ONE personalized pick — free.</h3>
+  <p class="muted">Tell us what you need. A human replies with one clear recommendation within 48 hours. No spam, ever.</p>
+  <form class="js-form" data-subject="Quick pick request (exit)" data-ok="Got it! Your 1 pick is on its way within 48 hours.">
+    <div class="hp"><input name="_hp" tabindex="-1" autocomplete="off"></div>
+    <div class="field"><input name="need" required placeholder="What are you deciding on? e.g. a laptop under $900"></div>
+    <div class="field"><input type="email" name="email" required placeholder="Your email"></div>
+    <button class="btn btn-primary btn-block" type="submit">Send me my 1 pick</button>
+    <div class="form-msg" role="status"></div>
+  </form>
+</div></div>
+<div class="cookie" id="cookie" role="dialog" aria-label="Cookie consent">
+  <strong>Cookies, briefly.</strong> <span class="small muted">We use essential storage to run tools, and—only with your OK—analytics and ads cookies (Google) to keep 1Each free. <a href="cookies.html">Details</a></span>
+  <div style="display:flex;gap:8px;margin-top:10px"><button class="btn btn-primary btn-sm" data-consent="all">Accept all</button><button class="btn btn-ghost btn-sm" data-consent="essential">Essential only</button></div>
+</div>
+<a class="btn btn-primary sticky-cta" id="sticky-cta" href="get-matched.html">🎯 Get my 1 pick</a>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="assets/js/config.js?v={V}"></script>
+<script src="assets/js/search-index.js?v={V}" defer></script>
+{extra}
+<script src="assets/js/app.js?v={V}" defer></script>
+</body>
+</html>
+"""
+
+def main():
+    index = []
+    for p in PAGES:
+        html = head(p) + p["body"] + foot(p)
+        with open(os.path.join(ROOT, p["file"]), "w", encoding="utf-8") as f:
+            f.write(html)
+        if p.get("robots", "").startswith("noindex"):
+            continue
+        index.append({"u": p["file"], "t": p.get("nav", p["title"].split(" | ")[0].split(" — ")[0]), "d": p["desc"], "k": p.get("k", "")})
+    with open(os.path.join(ROOT, "assets/js/search-index.js"), "w") as f:
+        f.write("window.SEARCH_INDEX=" + json.dumps(index, ensure_ascii=False) + ";\n")
+    urls = "".join(f"<url><loc>{SITE}{'' if i['u']=='index.html' else i['u']}</loc><lastmod>{TODAY}</lastmod></url>" for i in index)
+    with open(os.path.join(ROOT, "sitemap.xml"), "w") as f:
+        f.write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n')
+    make_og()
+    print(f"Built {len(PAGES)} pages")
+
+def make_og():
+    """Render the 1200x630 social share image (needs Pillow; skipped if unavailable)."""
+    out = os.path.join(ROOT, "assets/img/og.png")
+    try:
+        from PIL import Image, ImageDraw, ImageFont
+    except ImportError:
+        return
+    im = Image.new("RGB", (1200, 630), "#12121a"); d = ImageDraw.Draw(im)
+    def f(s):
+        for p in ["/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"]:
+            try: return ImageFont.truetype(p, s)
+            except Exception: pass
+        return ImageFont.load_default()
+    d.rounded_rectangle((80, 80, 230, 230), radius=36, fill="#5b3df5")
+    d.text((125, 95), "1", font=f(120), fill="white"); d.ellipse((190, 175, 215, 200), fill="#c6f432")
+    d.text((80, 290), "1Each", font=f(110), fill="white")
+    d.text((80, 430), "One smart answer. For each decision.", font=f(44), fill="#c6f432")
+    d.text((80, 510), "Best pick · True cost · Fair split", font=f(34), fill="#a3a3b8")
+    im.save(out)
+
+if __name__ == "__main__":
+    main()
