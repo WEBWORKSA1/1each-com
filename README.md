@@ -15,24 +15,25 @@ The site runs on the **free GitHub Pages plan**. It has no backend and no build 
 
 ## Edit and rebuild
 ```bash
-python3 build.py      # regenerates every *.html, sitemap.xml and the search index
+python3 build.py      # regenerates every *.html, sitemap.xml, the search index and assets/img/og.png (needs Pillow)
 ```
 - **Page content:** `pages.py`
 - **Shared header and footer:** `build.py`
 - **Guides:** `assets/js/picks.js`
 - **Settings:** `assets/js/config.js`. This holds AdSense, GA4, YouTube IDs, donation links and contest dates.
 
-Every push to `main` runs `.github/workflows/build-deploy.yml`. The workflow rebuilds the pages, commits the HTML, and publishes to the `gh-pages` branch.
+Commit the regenerated HTML. GitHub Pages serves the repo as-is (Settings → Pages → Deploy from branch).
 
 ## Go-live checklist
 1. **Custom domain.** In the repo, open Settings → Pages → Custom domain, enter `1each.com`, then add these DNS records:
    - A records pointing to 185.199.108.153, 185.199.109.153, 185.199.110.153 and 185.199.111.153
    - a CNAME record for `www` pointing to `webworksa1.github.io`
-2. **Forms.** Submit any form once, then click the activation link FormSubmit sends to the site inbox. Optionally paste the alias FormSubmit gives you into `formAlias`. The contact address is stored obfuscated and is never printed on the site.
-3. **AdSense.** Once approved, set `adsenseClient` and the `adSlots` values, and put your publisher line in `ads.txt`.
-4. **Analytics.** Set `ga4`. It loads only after the visitor gives cookie consent.
-5. **Donations.** Set the `donate.*` URLs.
-6. **Videos.** Set `videos[].id`, the YouTube video IDs.
+2. **Social image.** Run `python3 build.py` once locally and commit `assets/img/og.png`.
+3. **Forms.** Submit any form once, then click the activation link FormSubmit sends to the site inbox. Optionally paste the alias FormSubmit gives you into `formAlias`. The contact address is stored obfuscated and is never printed on the site.
+4. **AdSense.** Once approved, set `adsenseClient` and the `adSlots` values, and put your publisher line in `ads.txt`.
+5. **Analytics.** Set `ga4`. It loads only after the visitor gives cookie consent.
+6. **Donations.** Set the `donate.*` URLs.
+7. **Videos.** Set `videos[].id`, the YouTube video IDs.
 
 ## Trademark and copyright
 "1Each" is used as a descriptive name meaning "one each". The site is independent and not affiliated with any holder of a similar name. See `disclosure.html`. © 2026 1Each.com.
