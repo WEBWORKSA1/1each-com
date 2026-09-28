@@ -1,8 +1,14 @@
 #!/usr/bin/env python3
-"""1Each.com static site generator.
-Run:  python3 build.py   -> writes every .html page + sitemap/search index into the repo root.
-No dependencies. Output is plain static HTML that GitHub Pages serves for free."""
-import json, os, datetime
+"""1Each.com site generator.
+
+    python3 build.py
+
+Writes two things from pages.py:
+  1. Jekyll sources in the repo root (one .html per page = front matter + body, plus
+     _layouts/default.html). GitHub Pages builds these for free on every push; no Actions needed.
+  2. A fully rendered local preview in _site/ (open _site/index.html), identical to what Pages serves.
+Also writes sitemap.xml, assets/js/search-index.js and assets/img/og.png (if Pillow is installed)."""
+import json, os, datetime, shutil
 from pages import PAGES  # page bodies live in pages.py
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -13,21 +19,33 @@ V = TODAY.replace("-", "")  # cache-busting version
 NAV = [("picks.html", "Picks"), ("tools.html", "Tools"), ("videos.html", "Videos"), ("get-matched.html", "Get Matched"),
        ("contests.html", "Contests"), ("support.html", "Support"), ("advertise.html", "Advertise")]
 
-def head(p):
-    ld = p.get("ld", "")
+# Values differ per page; in the Jekyll layout they become Liquid tags, in the preview real values.
+LIQUID = dict(title="{{ page.title }}", desc="{{ page.description }}", canon="{{ page.canon }}",
+              robots="{{ page.robots | default: 'index,follow,max-image-preview:large' }}")
+
+def nav_html(cur):
+    out = []
+    for u, t in NAV:
+        if cur is None:
+            out.append(f'<a href="{u}"{{% if page.file == "{u}" %}} aria-current="page"{{% endif %}}>{t}</a>')
+        else:
+            out.append(f'<a href="{u}"' + (' aria-current="page"' if u == cur else '') + f'>{t}</a>')
+    return "".join(out)
+
+def head(v, cur):
     return f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{p['title']}</title>
-<meta name="description" content="{p['desc']}">
-<link rel="canonical" href="{SITE}{'' if p['file']=='index.html' else p['file']}">
-<meta name="robots" content="{p.get('robots','index,follow,max-image-preview:large')}">
+<title>{v['title']}</title>
+<meta name="description" content="{v['desc']}">
+<link rel="canonical" href="{SITE}{v['canon']}">
+<meta name="robots" content="{v['robots']}">
 <meta name="theme-color" content="#5b3df5">
 <meta property="og:type" content="website"><meta property="og:site_name" content="1Each">
-<meta property="og:title" content="{p['title']}"><meta property="og:description" content="{p['desc']}">
-<meta property="og:url" content="{SITE}{'' if p['file']=='index.html' else p['file']}"><meta property="og:image" content="{SITE}assets/img/og.png">
+<meta property="og:title" content="{v['title']}"><meta property="og:description" content="{v['desc']}">
+<meta property="og:url" content="{SITE}{v['canon']}"><meta property="og:image" content="{SITE}assets/img/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="manifest.webmanifest">
@@ -35,14 +53,13 @@ def head(p):
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css?v={V}">
 <script>try{{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}}catch(e){{}}</script>
-{ld}
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <div class="topbar" role="note">Contact, if you are interested in this website / domain name / Sponsorship / Advertisement / Partnership — <a href="https://web.works/contact" target="_blank" rel="noopener">web.works/contact</a></div>
 <header class="header"><div class="container row">
   <a class="logo" href="index.html" aria-label="1Each home"><span class="mark">1</span>1Each</a>
-  <nav class="nav" id="nav" aria-label="Main">{''.join(f'<a href="{u}"' + (' aria-current="page"' if u==p['file'] else '') + f'>{t}</a>' for u,t in NAV)}</nav>
+  <nav class="nav" id="nav" aria-label="Main">{nav_html(cur)}</nav>
   <div class="hdr-actions">
     <button class="icon-btn" data-open="search-modal" aria-label="Search (press /)">🔍</button>
     <button class="icon-btn" id="theme-toggle" aria-label="Toggle dark mode">🌓</button>
@@ -53,8 +70,7 @@ def head(p):
 <main id="main">
 """
 
-def foot(p):
-    extra = "".join(f'<script src="assets/js/{s}?v={V}" defer></script>' for s in p.get("js", []))
+def foot(scripts):
     return f"""</main>
 <section style="padding-top:0"><div class="container">
   <div class="newsletter reveal">
@@ -113,28 +129,69 @@ def foot(p):
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script src="assets/js/config.js?v={V}"></script>
 <script src="assets/js/search-index.js?v={V}" defer></script>
-{extra}
+{scripts}
 <script src="assets/js/app.js?v={V}" defer></script>
 </body>
 </html>
 """
 
+def canon(p):
+    return "" if p["file"] == "index.html" else p["file"]
+
+def page_scripts(js):
+    return "".join(f'<script src="assets/js/{s}?v={V}" defer></script>' for s in js)
+
+def front_matter(p):
+    q = lambda s: json.dumps(s, ensure_ascii=False)  # JSON strings are valid YAML
+    fm = ["---", "layout: default", f"file: {q(p['file'])}", f"title: {q(p['title'])}", f"description: {q(p['desc'])}",
+          f"canon: {q(canon(p))}"]
+    if p.get("robots"):
+        fm.append(f"robots: {q(p['robots'])}")
+    if p.get("js"):
+        fm.append("js: [" + ", ".join(q(s) for s in p["js"]) + "]")
+    if p["file"] == "404.html":
+        fm.append("permalink: /404.html")
+    fm.append("---")
+    return "\n".join(fm) + "\n"
+
+def write(path, text):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(text)
+
 def main():
+    # 1) Jekyll layout + page sources (what GitHub Pages builds)
+    layout_scripts = '{% for s in page.js %}<script src="assets/js/{{ s }}?v=' + V + '" defer></script>{% endfor %}'
+    write(os.path.join(ROOT, "_layouts/default.html"), head(LIQUID, None) + "{{ content }}" + foot(layout_scripts))
+    for p in PAGES:
+        write(os.path.join(ROOT, p["file"]), front_matter(p) + p.get("ld", "") + p["body"])
+
+    # 2) Local preview, fully rendered (mirrors the Jekyll output)
+    out = os.path.join(ROOT, "_site")
+    shutil.rmtree(out, ignore_errors=True)
+    for item in ["assets", "manifest.webmanifest", "sw.js", "robots.txt", "ads.txt"]:
+        src = os.path.join(ROOT, item)
+        (shutil.copytree if os.path.isdir(src) else shutil.copy)(src, os.path.join(out, item))
+
     index = []
     for p in PAGES:
-        html = head(p) + p["body"] + foot(p)
-        with open(os.path.join(ROOT, p["file"]), "w", encoding="utf-8") as f:
-            f.write(html)
+        v = dict(title=p["title"], desc=p["desc"], canon=canon(p), robots=p.get("robots", "index,follow,max-image-preview:large"))
+        write(os.path.join(out, p["file"]), head(v, p["file"]) + p.get("ld", "") + p["body"] + foot(page_scripts(p.get("js", []))))
         if p.get("robots", "").startswith("noindex"):
             continue
         index.append({"u": p["file"], "t": p.get("nav", p["title"].split(" | ")[0].split(" — ")[0]), "d": p["desc"], "k": p.get("k", "")})
-    with open(os.path.join(ROOT, "assets/js/search-index.js"), "w") as f:
-        f.write("window.SEARCH_INDEX=" + json.dumps(index, ensure_ascii=False) + ";\n")
+
+    si = "window.SEARCH_INDEX=" + json.dumps(index, ensure_ascii=False) + ";\n"
+    write(os.path.join(ROOT, "assets/js/search-index.js"), si)
+    write(os.path.join(out, "assets/js/search-index.js"), si)
     urls = "".join(f"<url><loc>{SITE}{'' if i['u']=='index.html' else i['u']}</loc><lastmod>{TODAY}</lastmod></url>" for i in index)
-    with open(os.path.join(ROOT, "sitemap.xml"), "w") as f:
-        f.write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n')
+    sm = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n'
+    write(os.path.join(ROOT, "sitemap.xml"), sm)
+    write(os.path.join(out, "sitemap.xml"), sm)
     make_og()
-    print(f"Built {len(PAGES)} pages")
+    if os.path.exists(os.path.join(ROOT, "assets/img/og.png")):
+        shutil.copy(os.path.join(ROOT, "assets/img/og.png"), os.path.join(out, "assets/img/og.png"))
+    print(f"Built {len(PAGES)} pages (Jekyll sources + _site preview)")
 
 def make_og():
     """Render the 1200x630 social share image (needs Pillow; skipped if unavailable)."""
