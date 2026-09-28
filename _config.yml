@@ -1,0 +1,5 @@
+# GitHub Pages (Jekyll) config for 1Each.com — builds free on every push.
+title: 1Each
+url: "https://1each.com"
+exclude: [README.md, PROMPT.md, RESEARCH.md, build.py, pages.py, __pycache__, _site, .gitignore]
+defaults: []
