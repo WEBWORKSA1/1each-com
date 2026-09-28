@@ -1,0 +1,54 @@
+---
+layout: default
+file: "get-matched.html"
+title: "Get Matched — Your 1 Personalized Pick, Free | 1Each"
+description: "Tell us what you're deciding and your budget. Get one clear personalized recommendation — or vetted provider quotes — free within 48 hours."
+canon: "get-matched.html"
+---
+<section class="page-hero"><div class="container">
+  <div class="crumbs"><a href="index.html">Home</a> / Get Matched</div>
+  <span class="eyebrow">Free · 60 seconds · Human reply in 48h</span><h1>Get your ONE pick</h1><p class="muted" style="font-size:1.15rem;max-width:720px">Answer 4 quick questions. A real person sends you one clear recommendation — or, when it saves you more, introductions to up to 3 vetted providers for quotes. You choose.</p>
+</div></section>
+<section style="padding-top:32px"><div class="container grid" style="grid-template-columns:minmax(0,1.4fr) minmax(0,.9fr);gap:28px">
+  <div class="card">
+    <form id="lead-form" class="js-form" data-subject="LEAD: Get Matched request" data-ok="🎉 Request received! Your 1 pick is on its way — check your inbox within 48 hours.">
+      <div class="hp"><input name="_hp" tabindex="-1" autocomplete="off"></div>
+      <div style="display:flex;justify-content:space-between" class="small muted"><span>Step <span id="step-num">1 / 4</span></span><span>🔒 Your details are never sold</span></div>
+      <div class="steps-bar"><i></i></div>
+      <div class="step"><h3>What are you deciding on?</h3><input type="hidden" name="category">
+        <div class="opt-grid" data-name="category"><button type="button" class="opt" data-v="home"><b>🏠</b>Home</button><button type="button" class="opt" data-v="kitchen"><b>🍳</b>Kitchen</button><button type="button" class="opt" data-v="tech"><b>💻</b>Tech</button><button type="button" class="opt" data-v="money"><b>💳</b>Money & banking</button><button type="button" class="opt" data-v="insurance"><b>🛡️</b>Insurance</button><button type="button" class="opt" data-v="travel"><b>✈️</b>Travel</button><button type="button" class="opt" data-v="health"><b>🏃</b>Health & fitness</button><button type="button" class="opt" data-v="software"><b>🤖</b>Software & AI</button><button type="button" class="opt" data-v="business"><b>📈</b>Business services</button><button type="button" class="opt" data-v="solar"><b>☀️</b>Solar & energy</button><button type="button" class="opt" data-v="family"><b>🧸</b>Kids & family</button><button type="button" class="opt" data-v="other"><b>✨</b>Something else</button></div></div>
+      <div class="step"><h3>Budget and timing</h3><input type="hidden" name="budget">
+        <div class="opt-grid" data-name="budget"><button type="button" class="opt" data-v="Under $100">Under $100</button><button type="button" class="opt" data-v="$100–500">$100–500</button><button type="button" class="opt" data-v="$500–2,000">$500–2,000</button><button type="button" class="opt" data-v="$2,000–10,000">$2,000–10,000</button><button type="button" class="opt" data-v="$10,000+">$10,000+</button><button type="button" class="opt" data-v="Not sure">Not sure</button></div>
+        <div class="field" style="margin-top:16px"><label for="lf-when">When do you plan to decide?</label><select id="lf-when" name="timeline"><option>This week</option><option>This month</option><option>1–3 months</option><option>Just researching</option></select></div>
+        <div style="display:flex;gap:8px"><button type="button" class="btn btn-ghost" data-prev>← Back</button><button type="button" class="btn btn-primary" data-next>Continue →</button></div></div>
+      <div class="step"><h3>Tell us the must-haves</h3>
+        <div class="field"><label for="lf-what">What exactly do you need?</label><textarea id="lf-what" name="details" required placeholder="e.g. A quiet laptop for spreadsheets and video calls, under 1.5 kg, good keyboard. Or: 3 quotes for rooftop solar for a 2,000 sq ft home."></textarea></div>
+        <div class="field"><label>What do you want back?</label><div class="chips"><label class="chip"><input type="checkbox" name="wants" value="One recommendation" style="width:auto;margin-right:6px" checked>One recommendation</label><label class="chip"><input type="checkbox" name="wants" value="Provider quotes" style="width:auto;margin-right:6px" >Provider quotes</label><label class="chip"><input type="checkbox" name="wants" value="A quick call" style="width:auto;margin-right:6px" >A quick call</label></div></div>
+        <div style="display:flex;gap:8px"><button type="button" class="btn btn-ghost" data-prev>← Back</button><button type="button" class="btn btn-primary" data-next>Continue →</button></div></div>
+      <div class="step"><h3>Where should we send your pick?</h3>
+        <div class="row2"><div class="field"><label for="lf-name">First name</label><input id="lf-name" name="name" required autocomplete="given-name"></div>
+        <div class="field"><label for="lf-email">Email</label><input id="lf-email" type="email" name="email" required autocomplete="email"></div>
+        <div class="field"><label for="lf-phone">Phone (optional, for quotes/calls)</label><input id="lf-phone" type="tel" name="phone" autocomplete="tel"></div>
+        <div class="field"><label for="lf-loc">Country / region</label><input id="lf-loc" name="location" autocomplete="country-name" placeholder="e.g. Canada, Ontario"></div></div>
+        <label class="check"><input type="checkbox" name="consent" value="yes" required> I agree to be contacted about this request. If I asked for quotes, 1Each may share my request with up to 3 relevant providers. <a href="privacy.html">Privacy</a></label>
+        <label class="check"><input type="checkbox" name="newsletter" value="yes" checked> Also send me the free weekly 1Each Letter</label>
+        <div style="display:flex;gap:8px;margin-top:8px"><button type="button" class="btn btn-ghost" data-prev>← Back</button><button type="submit" class="btn btn-primary">Send me my 1 pick →</button></div></div>
+      <div class="form-msg" role="status"></div>
+    </form>
+  </div>
+  <aside>
+    <div class="card" style="margin-bottom:16px"><h3>How it works</h3><ol style="padding-left:18px;margin:0"><li><strong>Tell us</strong> your need and budget (60 sec).</li><li><strong>We research</strong> against our One Pick rules.</li><li><strong>You get one answer</strong> — plus quotes only if you asked.</li></ol></div>
+    <div class="card" style="margin-bottom:16px"><h3>Our promise</h3><ul style="padding-left:18px;margin:0"><li>Free for you, always</li><li>No paid rankings</li><li>Never sold to data brokers</li><li>Unsubscribe in one click</li></ul></div>
+    <div class="card"><h3>Are you a business?</h3><p class="muted">Receive qualified, opted-in requests in your category.</p><a class="btn btn-ghost btn-sm" href="#partner">Become a provider partner ↓</a></div>
+  </aside>
+</div></section>
+<section id="partner" style="padding-top:0"><div class="container"><div class="card">
+  <span class="eyebrow">For providers</span><h2>Get qualified leads from people ready to decide</h2>
+  <p class="muted">Insurance, solar, finance, home services, software and retail partners receive opted-in requests that match their service area and category. Pay-per-lead or monthly plans.</p>
+  <form class="js-form" data-subject="LEAD: Provider partner application" data-ok="Thanks! Our partnerships team will reply within 2 business days."><div class="hp"><input name="_hp" tabindex="-1" autocomplete="off"></div>
+    <div class="row2"><div class="field"><label>Company</label><input name="company" required></div><div class="field"><label>Your name</label><input name="name" required></div>
+    <div class="field"><label>Work email</label><input type="email" name="email" required></div><div class="field"><label>Category</label><select name="category"><option>Home</option><option>Kitchen</option><option>Tech</option><option>Money & banking</option><option>Insurance</option><option>Travel</option><option>Health & fitness</option><option>Software & AI</option><option>Business services</option><option>Solar & energy</option><option>Kids & family</option><option>Something else</option></select></div>
+    <div class="field"><label>Service area</label><input name="area" placeholder="Cities, states, countries"></div><div class="field"><label>Monthly lead volume wanted</label><select name="volume"><option>1–25</option><option>25–100</option><option>100–500</option><option>500+</option></select></div></div>
+    <button class="btn btn-primary" type="submit">Apply as a partner</button><div class="form-msg" role="status"></div></form>
+</div></div></section>
+<style>@media (max-width:900px){#main .container.grid[style*="1.4fr"]{grid-template-columns:1fr!important}}</style>
